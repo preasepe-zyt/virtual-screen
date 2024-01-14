@@ -1,0 +1,21 @@
+1对蛋白进行去配体（pymol等等都可以）
+edit delete water
+edit hydrogen add
+grid macromolecule choose
+read macromolecule
+edit hydrogen add
+ligands input 1Choose
+torsion tree Detect Root 3Choose Torsions
+ligand ouput 
+grid 创建盒子
+grid  macromolecular
+set map type ligand
+grid box 设置盒子以后 file closing save current
+output vina config
+run autodock vina
+analyze  open vina docking results
+analyze macromolecular
+analyze dockings show interaction
+可视化 直接打开pymol 打开pbqt文件和蛋白然后preset  ligand site
+
+

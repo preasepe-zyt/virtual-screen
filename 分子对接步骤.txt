@@ -1,0 +1,52 @@
+1下载pbd的蛋白和sdf的小分子配体
+2对蛋白进行去水和去配体（pymol等等都可以）
+3处理小分子 1转换格式（openbabel）转换为mol2 或者是pdb
+file read molecular
+edit hydrogen add
+changes Compute GasteigerCheck
+atoms assign   AD4 type 
+save pdpqt 保存蛋白受体 pdpqt
+edit delete all
+ligand input
+torsion tree 1Choose Root 2 Detect Root 3Choose Torsions
+output save pdpqt
+grid 创建盒子
+grid  macromolecular
+set map type ligand
+preferences  去掉 勾 可以移动ligand
+grid box 设置盒子以后 file closing save current
+output save gpf  手动输入gpf的后缀
+run autogrid
+需要重新选定gpf文件才能显示其他的东西
+docking macromolecular rigid filename
+docking ligand open
+Search Parmeters 1Genetic Algorithm最精准 2Simulated Annealing 3Local Search Parmeters最快的
+区别在于 number of ls runs 和 maximum number of iteration
+docking parameters accept
+output 选择的算法 手动输入后缀 dpf
+run run autodock
+analyze docking open 对接文件 dlg
+analyze macromolecular open
+analyze conformation paly ranked by energy 
+show info  show distances
+write complex        complex.pdbqt
+analyze conformations load 可以看所有的对接能
+openbabel 来转换成pdb
+ctrl可以控制pymol的视角
+ligand改变颜色color
+氢键 actions find  polar contact      to others excluding solvent
+配体剔除出来 actions extract object
+滚状结构 show sticks
+选择对接的stick 然后hide 全部
+把选择的stick改成蓝色
+选择残基的l label residues
+计算距离wizard measurement
+viewing 按住ctrl键来进行移动
+settings transparency cartoon
+display background
+disreceptor-ligand interaction covery show 2d diagram
+preset ligands site cartoon
+
+
+
+
